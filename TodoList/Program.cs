@@ -34,10 +34,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//Apply CORS policies to all endpoints
-app.UseCors();
+
 
 app.UseHttpsRedirection();
+
+//Apply CORS policies to all endpoints
+app.UseCors();
 
 app.UseAuthorization();
 
