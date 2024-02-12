@@ -45,7 +45,7 @@ namespace TodoList.Controllers
             List<Models.Task> tasksByStatus = new List<Models.Task>();  
             TasksRepo taskRepo = new TasksRepo(_context);
             tasksByStatus = taskRepo.GetTasksByStatus(status);
-            //return await taskRepo.GetTasksByStatus(status);
+
             return Ok(new { tasksByStatus });
         }
 
