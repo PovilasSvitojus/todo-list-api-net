@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoList.Models;
+using TodoList.Repo;
 
 namespace TodoList.Controllers
 {
@@ -36,6 +37,16 @@ namespace TodoList.Controllers
             {
                 return task;
             }
+        }
+
+        [HttpGet("status")]
+        public async Task<ActionResult<Models.Task>> GetByStatus([FromQuery(Name = "status")] string status)
+        {
+            List<Models.Task> tasksByStatus = new List<Models.Task>();  
+            TasksRepo taskRepo = new TasksRepo(_context);
+            tasksByStatus = taskRepo.GetTasksByStatus(status);
+            //return await taskRepo.GetTasksByStatus(status);
+            return Ok(new { tasksByStatus });
         }
 
         [HttpPost]
